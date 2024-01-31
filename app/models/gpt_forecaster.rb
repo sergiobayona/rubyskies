@@ -79,6 +79,7 @@ class GptForecaster
             decription: 'The current weather conditions',
             type: 'string',
             enum: %w[sunny cloudy windy rainy stormy]
+          }
         }
       }
     }

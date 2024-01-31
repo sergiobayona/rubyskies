@@ -4,6 +4,7 @@ class CreateWeathers < ActiveRecord::Migration[7.1]
       t.string :postal_code
       t.string :country
       t.json :data
+      t.boolean :cached_weather, default: false
 
       t.timestamps
     end

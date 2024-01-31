@@ -1,5 +1,5 @@
 class Location < ApplicationRecord
-  attr_accessor :location_string, :cached_weather
+  attr_accessor :location_string
 
   def weathers
     Weather.where('weathers.country = ? AND weathers.postal_code = ?', country, postal_code)
@@ -11,11 +11,12 @@ class Location < ApplicationRecord
 
   def find_or_create_latest_weather
     if latest_weather.present?
-      self.cached_weather = true
+      puts('latest_weather.cached_weather = true')
+      latest_weather.update_attribute(:cached_weather, true)
       return latest_weather
     end
 
     weather_report = GptForecaster.get_weather(self)
-    Weather.create(country:, postal_code:, data: weather_report)
+    Weather.create!(country: country, postal_code: postal_code, data: weather_report) # rubocop:disable Style/HashSyntax
   end
 end

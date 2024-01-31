@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_31_190231) do
     t.string "postal_code"
     t.string "country"
     t.json "data"
+    t.boolean "cached_weather", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["country", "postal_code"], name: "index_weathers_on_country_and_postal_code"

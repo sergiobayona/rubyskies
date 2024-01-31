@@ -2,6 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = [ 
+    "form",
     "input", 
     "address_line_1",
     "address_line_2",
@@ -12,8 +13,16 @@ export default class extends Controller {
   ]
   
   connect() {
+    this.inputTarget.focus();
+    this.hasPlaceSelected = false;
     if(window.google) {
-      this.initPlaces()
+      this.initPlaces();
+    }
+  }
+
+  preventSubmit(event) {
+    if (!this.hasPlaceSelected) {
+      event.preventDefault();
     }
   }
 
@@ -59,5 +68,6 @@ export default class extends Controller {
           break;
       }
     }
+    this.hasPlaceSelected = true;
   }
 }

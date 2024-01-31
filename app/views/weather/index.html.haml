@@ -1,1 +1,11 @@
-%h2 latest weather
+%p
+    = link_to "check another location", root_path, class: "text-blue-500"
+
+#weather_report.text-center
+    %h2.leading-10 Latest weather for <strong>#{@weather.location_name}</strong>
+    %h3.text-6xl #{@weather.temperature}°F
+    %p Hi: #{@weather.temp_max}°F | Lo: #{@weather.temp_min}°F
+    %h3.text-4xl #{@weather.conditions}
+
+    - if @weather.cached_weather?
+        %p.my-6.text-xs.text-slate-600 cached at #{@weather.created_at}

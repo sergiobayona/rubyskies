@@ -12,5 +12,5 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials[:google_maps_api_key]}&callback=initAutocomplete&libraries=places" async defer data-turbolinks-eval="false"></script>
   %body
     = render "shared/header"
-    %main.container
+    %main.container.mx-auto.my-4
       = yield
