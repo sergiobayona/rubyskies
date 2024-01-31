@@ -1,6 +1,6 @@
 require 'openai'
 
-class GptWeather
+class GptForecaster
   def self.get_weather(record)
     response = client.chat(
       parameters: request_parameters(record)
@@ -33,6 +33,7 @@ class GptWeather
       city: #{record.city}
       state: #{record.state}
       state: #{record.postal_code}
+      country: #{record.country}
     HEREDOC
   end
 
@@ -42,7 +43,7 @@ class GptWeather
       description: 'Get the current weather for a location',
       parameters: {
         type: 'object',
-        required: %w[city state postal_code current_temperature temp_min temp_max],
+        required: %w[city state postal_code current_temperature temp_min temp_max conditions],
         properties: {
           city: {
             title: 'City',
@@ -72,14 +73,22 @@ class GptWeather
             title: 'Maximum Temperature',
             decription: 'The maximum temperature in fahrenheit',
             type: 'number'
-          }
+          },
+          conditions: {
+            title: 'Conditions',
+            decription: 'The current weather conditions',
+            type: 'string',
+            enum: %w[sunny cloudy windy rainy stormy]
         }
       }
     }
   end
 
   def self.system_message
-    'You are a helpful weather bot. You can tell the current weather conditions for any location. Your answers are always in JSON format. All temperatures in fahrenheit.'
+    <<~HEREDOC
+      You are a helpful weather bot. You can tell the current weather conditions for any location.
+      Your answers are always in JSON format. All temperatures in fahrenheit.
+    HEREDOC
   end
 
   def self.client

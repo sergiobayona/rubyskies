@@ -1,8 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe GptWeather, type: :model do
+RSpec.describe GptForecaster, type: :model do
+  before do
+    Weather.delete_all
+  end
+
   let(:location) do
-    Weather.new(city: 'Atlanta', state: 'Georgia', postal_code: '30097')
+    Location.new(city: 'Atlanta', state: 'Georgia', postal_code: '30097')
   end
 
   let(:weather_report) { described_class.get_weather(location) }

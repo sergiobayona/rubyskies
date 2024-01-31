@@ -10,17 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_30_165931) do
-  create_table "weathers", force: :cascade do |t|
+ActiveRecord::Schema[7.1].define(version: 2024_01_31_190231) do
+  create_table "locations", force: :cascade do |t|
     t.string "address_line_1"
     t.string "address_line_2"
     t.string "city"
     t.string "state"
-    t.integer "postal_code"
+    t.string "postal_code"
     t.string "country"
-    t.text "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["country", "postal_code"], name: "index_locations_on_country_and_postal_code"
+  end
+
+  create_table "weathers", force: :cascade do |t|
+    t.string "postal_code"
+    t.string "country"
+    t.json "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country", "postal_code"], name: "index_weathers_on_country_and_postal_code"
   end
 
 end

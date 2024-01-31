@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
-  root 'weather#index'
-  resources :weather, only: %i[index create show]
+  root 'location#index'
+  resources :location, only: %i[index create show] do
+    resources :weather, only: %i[index create show]
+  end
 end
