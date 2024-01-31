@@ -93,17 +93,25 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    coderay (1.1.3)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
+    crack (0.4.6)
+      bigdecimal
+      rexml
     crass (1.0.6)
     date (3.3.4)
-    debug (1.9.1)
-      irb (~> 1.10)
-      reline (>= 0.3.8)
     diff-lcs (1.5.0)
     drb (2.2.0)
       ruby2_keywords
     erubi (1.12.0)
+    event_stream_parser (1.0.0)
+    faraday (2.9.0)
+      faraday-net_http (>= 2.0, < 3.2)
+    faraday-multipart (1.0.4)
+      multipart-post (~> 2)
+    faraday-net_http (3.1.0)
+      net-http
     globalid (1.2.1)
       activesupport (>= 6.1)
     haml (6.3.0)
@@ -115,6 +123,7 @@ GEM
       activesupport (>= 5.1)
       haml (>= 4.0.6)
       railties (>= 5.1)
+    hashdiff (1.1.0)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.0.1)
@@ -137,10 +146,14 @@ GEM
       net-smtp
     marcel (1.0.2)
     matrix (0.4.2)
+    method_source (1.0.0)
     mini_mime (1.1.5)
     minitest (5.21.2)
     msgpack (1.7.2)
+    multipart-post (2.3.0)
     mutex_m (0.2.0)
+    net-http (0.4.1)
+      uri
     net-imap (0.4.9.1)
       date
       net-protocol
@@ -167,6 +180,11 @@ GEM
     parser (3.3.0.5)
       ast (~> 2.4.1)
       racc
+    pry (0.14.2)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+    pry-rails (0.3.9)
+      pry (>= 0.10.4)
     psych (5.1.2)
       stringio
     public_suffix (5.0.4)
@@ -264,6 +282,10 @@ GEM
       rubocop (~> 1.40)
       rubocop-capybara (~> 2.17)
       rubocop-factory_bot (~> 2.22)
+    ruby-openai (6.3.1)
+      event_stream_parser (>= 0.3.0, < 2.0.0)
+      faraday (>= 1)
+      faraday-multipart (>= 1)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
@@ -311,11 +333,17 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
+    uri (0.13.0)
+    vcr (6.2.0)
     web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    webmock (3.19.1)
+      addressable (>= 2.8.0)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
     webrick (1.8.1)
     websocket (1.2.10)
     websocket-driver (0.7.6)
@@ -336,9 +364,9 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   capybara
-  debug
   haml-rails (~> 2.0)
   importmap-rails
+  pry-rails
   puma (>= 5.0)
   rails (~> 7.1.3)
   rspec-rails
@@ -346,6 +374,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   rubocop-rspec
+  ruby-openai
   selenium-webdriver
   sprockets-rails
   sqlite3 (~> 1.4)
@@ -353,7 +382,9 @@ DEPENDENCIES
   tailwindcss-rails
   turbo-rails
   tzinfo-data
+  vcr
   web-console
+  webmock
 
 RUBY VERSION
    ruby 3.3.0p0

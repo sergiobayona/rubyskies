@@ -10,17 +10,20 @@ gem "turbo-rails"
 gem "stimulus-rails"
 gem "tailwindcss-rails"
 gem "haml-rails", "~> 2.0"
+gem "ruby-openai"
 
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 
 group :development, :test do
-  gem "debug", platforms: %i[ mri windows ]
+  gem "pry-rails"
   gem "rspec-rails"
   gem "rubocop"
   gem "rubocop-performance"
   gem "rubocop-rails"
   gem "rubocop-rspec"
+  gem "vcr"
+  gem "webmock"
 end
 
 group :development do
