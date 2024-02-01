@@ -2,13 +2,14 @@
 
 An app to check the weather in a given location. 
 The location form is powered by the Google places API. It auto-completes the location as the user types.
-The app also uses OpenAI's gpt-3.5-turbo-1106 model via their API.
-It makes a function call that returns the weather values in json. The app then parses the json and displays the weather in a user-friendly format.
+The app also uses OpenAI's gpt-3.5-turbo-1106 model via their API. The AI model is used to generate a summary of the weather in the given location.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+It uses Tailwind CSS for styling, Hotwire/Stimulus for JS, SQLite for the database and RSpec for testing.
 
-It uses Tailwind CSS for styling, SQLite for the database and RSpec for testing.
+## AI Functionality
+The app uses the OpenAI API to generate a summary of the weather in the given location. The app makes a special POST request to the OpenAI API with the weather data as the prompt. The API then returns a summary of the weather in the given location. The app then displays the summary to the user.
+It uses a new prompting technique called "Structured Extraction" that has been enabled by the OpenAI API function calling capabilities. See https://platform.openai.com/docs/guides/function-calling
+
 
 ## Configuration
 The app uses Rails credentials to store the API keys.
