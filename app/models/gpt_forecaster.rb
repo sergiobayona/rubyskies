@@ -29,7 +29,7 @@ class GptForecaster
   # Generates the user prompt.
   def self.message(record)
     <<~HEREDOC
-      Get the current weather with the following for the following location:
+      Get the current weather for the following location:
       city: #{record.city}
       state: #{record.state}
       state: #{record.postal_code}
