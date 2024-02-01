@@ -61,17 +61,17 @@ class GptForecaster
           },
           current_temperature: {
             title: 'Current Temperature',
-            decription: 'The current temperature in fahrenheit',
+            decription: 'The current temperature in Fahrenheit',
             type: 'number'
           },
           temp_min: {
             title: 'Minimum Temperature',
-            decription: 'The minimum temperature in fahrenheit',
+            decription: 'The minimum temperature in Fahrenheit',
             type: 'number'
           },
           temp_max: {
             title: 'Maximum Temperature',
-            decription: 'The maximum temperature in fahrenheit',
+            decription: 'The maximum temperature in Fahrenheit',
             type: 'number'
           },
           conditions: {
@@ -88,7 +88,7 @@ class GptForecaster
   def self.system_message
     <<~HEREDOC
       You are a helpful weather bot. You can tell the current weather conditions for any location.
-      Your answers are always in JSON format. All temperatures in fahrenheit.
+      Your responses are always in JSON format. All temperatures in Fahrenheit.
     HEREDOC
   end
 
