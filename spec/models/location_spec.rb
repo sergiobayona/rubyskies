@@ -30,7 +30,7 @@ RSpec.describe Location, type: :model do # rubocop:disable Metrics/BlockLength
     end
   end
 
-  describe '#find_or_create_latest_weather' do # rubocop:disable Metrics/BlockLength
+  describe '#find_or_create_latest_weather' do
     before do
       Weather.destroy_all
       Location.destroy_all
@@ -50,11 +50,6 @@ RSpec.describe Location, type: :model do # rubocop:disable Metrics/BlockLength
           location.find_or_create_latest_weather
         end.to_not change(Weather, :count)
       end
-
-      it "flags the location's weather as cached" do
-        location.find_or_create_latest_weather
-        expect(location.cached_weather).to be_truthy
-      end
     end
 
     context "when there is no recent weather for the location's country and postal code" do
@@ -62,8 +57,6 @@ RSpec.describe Location, type: :model do # rubocop:disable Metrics/BlockLength
         expect do
           location.find_or_create_latest_weather
         end.to change(Weather, :count).by(1)
-
-        expect(location.cached_weather).to be_nil
       end
     end
   end

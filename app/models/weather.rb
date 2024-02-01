@@ -6,7 +6,8 @@ class Weather < ApplicationRecord
   end
 
   def location_name
-    "#{location.city}, #{location.state} #{location.postal_code}, #{location.country}"
+    lparts = %i[city state postal_code country]
+    lparts.map { |part| location.send(part) }.compact.join(', ')
   end
 
   def temperature

@@ -11,7 +11,6 @@ class Location < ApplicationRecord
 
   def find_or_create_latest_weather
     if latest_weather.present?
-      puts('latest_weather.cached_weather = true')
       latest_weather.update_attribute(:cached_weather, true)
       return latest_weather
     end
